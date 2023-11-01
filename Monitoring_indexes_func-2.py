@@ -46,7 +46,7 @@ def take_info_sku(sku_list, clientid, apikey):#выгрузка из sku
         warnings.filterwarnings("ignore")
 
         df.index = [sku] * len(df)
-        final_df = final_df.append(df)
+        final_df = pd.concat([final_df, df])        # было так final_df = final_df.append(df)
 
     return final_df
 
