@@ -218,6 +218,12 @@ def time_vypoln():
     
 def pokaz(dataset):
     st.write(dataset)
+    
+execution_count = 0
+def schetchick():
+    global execution_count
+    execution_count += 1
+    return execution_count
 
 
 # In[54]:
@@ -251,7 +257,11 @@ df = nuzhn_stolb(df)
 sku_now = actual_sku(df)
 osnova_dt = sozdanie_datafreima()
 # new_sku = spisok_new_sku(osnova_dt)
-novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+execution_count = schetchick()
+if execution_count == 0:
+    novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+else:
+    novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
 novyi_pd = obrabotka_dataseta(novyi_pd)
 dataset_obrez = obrez(novyi_pd)
 novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
@@ -280,31 +290,31 @@ pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы пр�
 # In[57]:
 
 
-start = time.time()
-# Вызов функций
-df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
-# df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
-# df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
-df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
-df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
-df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
-df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+# start = time.time()
+# # Вызов функций
+# df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
+# # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
+# # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
+# df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
+# df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
+# df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
+# df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
 
-df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+# df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
 
-df = nuzhn_stolb(df)
-sku_now = actual_sku(df)
-osnova_dt = sozdanie_datafreima()
-# new_sku = spisok_new_sku(osnova_dt)
-novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-novyi_pd = obrabotka_dataseta(novyi_pd)
-dataset_obrez = obrez(novyi_pd)
-novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
+# df = nuzhn_stolb(df)
+# sku_now = actual_sku(df)
+# osnova_dt = sozdanie_datafreima()
+# # new_sku = spisok_new_sku(osnova_dt)
+# novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+# novyi_pd = obrabotka_dataseta(novyi_pd)
+# dataset_obrez = obrez(novyi_pd)
+# novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
-stop = time.time()
-dlit_vypoln(start, stop)
-time_vypoln()
-pokaz(novyi_pd_dlya_pokaza)
+# stop = time.time()
+# dlit_vypoln(start, stop)
+# time_vypoln()
+# pokaz(novyi_pd_dlya_pokaza)
 # # novyi_pd  # - можно увидеть последние загруженные данные
 # novyi_pd_dlya_pokaza  # - вывод конечного результата
 
