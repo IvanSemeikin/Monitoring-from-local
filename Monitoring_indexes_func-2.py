@@ -188,7 +188,7 @@ def obrabotka_dataseta(dataset):
         st.write(f'Количество изменений: {changes}')
     
     return dataset
-@st.cache
+@st.cache_data
 def obrez(dataset):
     dataset_obr = dataset.copy()
     columns_to_drop = [9, 10, 11, 12, 13]
@@ -220,7 +220,7 @@ def pokaz(dataset):
     st.write(dataset)
     
 execution_count = 0
-@st.cache
+@st.cache_data
 def schetchick():
     global execution_count
     execution_count += 1
@@ -275,7 +275,7 @@ pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы пр�
 # novyi_pd_dlya_pokaza  # - вывод конечного результата
 
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
-if st.button("Reload"):
+if st.button("Пожалуйста, работай нормально!"):
     start = time.time()
     # Вызов функций
     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
