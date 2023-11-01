@@ -10,7 +10,7 @@ import datetime
 import warnings
 from datetime import datetime
 import time
-import schedule
+# import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
 
 
 # In[2]:
@@ -258,7 +258,7 @@ novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 stop = time.time()
 dlit_vypoln(start, stop)
 time_vypoln()
-# pokaz(novyi_pd_dlya_pokaza)
+pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
 # # novyi_pd  # - можно увидеть последние загруженные данные
 # novyi_pd_dlya_pokaza  # - вывод конечного результата
 
@@ -279,78 +279,78 @@ time_vypoln()
 # In[57]:
 
 
-start = time.time()
-# Вызов функций
-df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
-# df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
-# df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
-df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
-df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
-df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
-df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+# start = time.time()
+# # Вызов функций
+# df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
+# # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
+# # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
+# df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
+# df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
+# df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
+# df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
 
-df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+# df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
 
-df = nuzhn_stolb(df)
-sku_now = actual_sku(df)
-osnova_dt = sozdanie_datafreima()
-# new_sku = spisok_new_sku(osnova_dt)
-novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-novyi_pd = obrabotka_dataseta(novyi_pd)
-dataset_obrez = obrez(novyi_pd)
-novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
+# df = nuzhn_stolb(df)
+# sku_now = actual_sku(df)
+# osnova_dt = sozdanie_datafreima()
+# # new_sku = spisok_new_sku(osnova_dt)
+# novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+# novyi_pd = obrabotka_dataseta(novyi_pd)
+# dataset_obrez = obrez(novyi_pd)
+# novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
-stop = time.time()
-dlit_vypoln(start, stop)
-time_vypoln()
-pokaz(novyi_pd_dlya_pokaza)
-# # novyi_pd  # - можно увидеть последние загруженные данные
-# novyi_pd_dlya_pokaza  # - вывод конечного результата
+# stop = time.time()
+# dlit_vypoln(start, stop)
+# time_vypoln()
+# pokaz(novyi_pd_dlya_pokaza)
+# # # novyi_pd  # - можно увидеть последние загруженные данные
+# # novyi_pd_dlya_pokaza  # - вывод конечного результата
 
-# Лямбда-функция для передачи аргументов в функции
-task_1 = lambda: take_info_sku(sku_1, client_Id_1, api_Key_1)
-# task_2 = lambda: take_info_sku(sku_2, client_Id_2, api_Key_2)
-# task_3 = lambda: take_info_sku(sku_3, client_Id_3, api_Key_3)
-task_4 = lambda: take_info_sku(sku_4, client_Id_4, api_Key_4)
-task_5 = lambda: take_info_sku(sku_5, client_Id_5, api_Key_5)
-task_6 = lambda: take_info_sku(sku_6, client_Id_6, api_Key_6)
-task_7 = lambda: take_info_sku(sku_7, client_Id_7, api_Key_7)
-task_8 = lambda: concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
-task_9 = lambda: nuzhn_stolb(df)
-task_10 = lambda: actual_sku(df)
-task_11 = lambda: sozdanie_datafreima()
-# task_12 = lambda: spisok_new_sku(osnova_dt)
-task_13 = lambda: main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-task_14 = lambda: obrabotka_dataseta(novyi_pd)
-task_15 = lambda: obrez(novyi_pd)
-task_16 = lambda: dataset_k_pokazu(novyi_pd)
-task_17 = lambda: dlit_vypoln(start, stop)
-task_18 = lambda: pokaz(novyi_pd_dlya_pokaza)
+# # Лямбда-функция для передачи аргументов в функции
+# task_1 = lambda: take_info_sku(sku_1, client_Id_1, api_Key_1)
+# # task_2 = lambda: take_info_sku(sku_2, client_Id_2, api_Key_2)
+# # task_3 = lambda: take_info_sku(sku_3, client_Id_3, api_Key_3)
+# task_4 = lambda: take_info_sku(sku_4, client_Id_4, api_Key_4)
+# task_5 = lambda: take_info_sku(sku_5, client_Id_5, api_Key_5)
+# task_6 = lambda: take_info_sku(sku_6, client_Id_6, api_Key_6)
+# task_7 = lambda: take_info_sku(sku_7, client_Id_7, api_Key_7)
+# task_8 = lambda: concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+# task_9 = lambda: nuzhn_stolb(df)
+# task_10 = lambda: actual_sku(df)
+# task_11 = lambda: sozdanie_datafreima()
+# # task_12 = lambda: spisok_new_sku(osnova_dt)
+# task_13 = lambda: main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+# task_14 = lambda: obrabotka_dataseta(novyi_pd)
+# task_15 = lambda: obrez(novyi_pd)
+# task_16 = lambda: dataset_k_pokazu(novyi_pd)
+# task_17 = lambda: dlit_vypoln(start, stop)
+# task_18 = lambda: pokaz(novyi_pd_dlya_pokaza)
 
-# Запускать каждые 15 минут
-t = 1
-# schedule.every(t).minutes.do(start)
-schedule.every(t).minutes.do(task_1)
-# schedule.every(t).minutes.do(task_2)
-# schedule.every(t).minutes.do(task_3)
-schedule.every(t).minutes.do(task_4)
-schedule.every(t).minutes.do(task_5)
-schedule.every(t).minutes.do(task_6)
-schedule.every(t).minutes.do(task_7)
-schedule.every(t).minutes.do(task_8)
-schedule.every(t).minutes.do(task_9)
-schedule.every(t).minutes.do(task_10)
-schedule.every(t).minutes.do(task_11)
-# schedule.every(t).minutes.do(task_12)
-schedule.every(t).minutes.do(task_13)
-schedule.every(t).minutes.do(task_14)
-schedule.every(t).minutes.do(task_15)
-schedule.every(t).minutes.do(task_16)
+# # Запускать каждые 15 минут
+# t = 1
+# # schedule.every(t).minutes.do(start)
+# schedule.every(t).minutes.do(task_1)
+# # schedule.every(t).minutes.do(task_2)
+# # schedule.every(t).minutes.do(task_3)
+# schedule.every(t).minutes.do(task_4)
+# schedule.every(t).minutes.do(task_5)
+# schedule.every(t).minutes.do(task_6)
+# schedule.every(t).minutes.do(task_7)
+# schedule.every(t).minutes.do(task_8)
+# schedule.every(t).minutes.do(task_9)
+# schedule.every(t).minutes.do(task_10)
+# schedule.every(t).minutes.do(task_11)
+# # schedule.every(t).minutes.do(task_12)
+# schedule.every(t).minutes.do(task_13)
+# schedule.every(t).minutes.do(task_14)
+# schedule.every(t).minutes.do(task_15)
+# schedule.every(t).minutes.do(task_16)
 
-# schedule.every(t).minutes.do(stop)
-# schedule.every(t).minutes.do(task_17)
-schedule.every(t).minutes.do(time_vypoln)
-schedule.every(t).minutes.do(task_18)
+# # schedule.every(t).minutes.do(stop)
+# # schedule.every(t).minutes.do(task_17)
+# schedule.every(t).minutes.do(time_vypoln)
+# schedule.every(t).minutes.do(task_18)
 
 # while True:
 #     schedule.run_pending()
