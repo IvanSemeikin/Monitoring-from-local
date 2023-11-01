@@ -11,7 +11,7 @@ import warnings
 from datetime import datetime
 import time
 import streamlit as st
-# import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
+import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
 
 
 # In[2]:
