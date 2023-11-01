@@ -188,7 +188,20 @@ def obrabotka_dataseta(dataset):
         st.write(f'Количество изменений: {changes}')
     
     return dataset
-@st.cache_data
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Инициализация st.session_state, если это необходимо
+if 'result' not in st.session_state:
+    st.session_state.result = None
+
+def your_function(param):
+    # Ваш код функции
+    result = f"This is the result for parameter {param}."
+    
+    # Сохранение результата в st.session_state
+    st.session_state.result = result
+    
+    return result
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def obrez(dataset):
     dataset_obr = dataset.copy()
     columns_to_drop = [9, 10, 11, 12, 13]
@@ -220,10 +233,15 @@ def pokaz(dataset):
     st.write(dataset)
     
 execution_count = 0
-@st.cache_data
+# Инициализация st.session_state, если это необходимо
+if 'execution_count' not in st.session_state:
+    st.session_state.execution_count = None
+
 def schetchick():
     global execution_count
     execution_count += 1
+    # Сохранение результата в st.session_state
+    st.session_state.execution_count = execution_count    
     return execution_count
 
 
@@ -271,8 +289,7 @@ stop = time.time()
 dlit_vypoln(start, stop)
 time_vypoln()
 pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-# # novyi_pd  # - можно увидеть последние загруженные данные
-# novyi_pd_dlya_pokaza  # - вывод конечного результата
+
 
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 if st.button("Пожалуйста, работай нормально!"):
@@ -306,8 +323,7 @@ if st.button("Пожалуйста, работай нормально!"):
     dlit_vypoln(start, stop)
     time_vypoln()
     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-    # # novyi_pd  # - можно увидеть последние загруженные данные
-    # novyi_pd_dlya_pokaza  # - вывод конечного результата
+
 # In[ ]:
 
 
