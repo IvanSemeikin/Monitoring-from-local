@@ -10,6 +10,7 @@ import datetime
 import warnings
 from datetime import datetime
 import time
+import streamlit as st
 # import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
 
 
@@ -182,9 +183,9 @@ def obrabotka_dataseta(dataset):
     changes = (dataset['Проверка'] == '1').sum()
     
     if changes == 0:
-        print('Изменений нет')
+        st.write('Изменений нет')
     else:
-        print(f'Количество изменений: {changes}')
+        st.write(f'Количество изменений: {changes}')
     
     return dataset
 
@@ -209,14 +210,14 @@ def concat_all_datasets(dataset1, dataset4, dataset5, dataset6, dataset7):  # с
 
 def dlit_vypoln(start, stop):
     time_raboty = round(stop - start, 2)
-    print(f'Время выполнения: {time_raboty} секунд')
+    st.write(f'Время выполнения: {time_raboty} секунд')
     
 def time_vypoln():
     time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f'Время последнего обновления: {time_now}')
+    st.write(f'Время последнего обновления: {time_now}')
     
 def pokaz(dataset):
-    print(dataset)
+    st.write(dataset)
 
 
 # In[54]:
