@@ -188,20 +188,20 @@ def obrabotka_dataseta(dataset):
         st.write(f'Количество изменений: {changes}')
     
     return dataset
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# Инициализация st.session_state, если это необходимо
-if 'result' not in st.session_state:
-    st.session_state.result = None
+# # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# # Инициализация st.session_state, если это необходимо
+# if 'result' not in st.session_state:
+#     st.session_state.result = None
 
-def your_function(param):
-    # Ваш код функции
-    result = f"This is the result for parameter {param}."
+# def your_function(param):
+#     # Ваш код функции
+#     result = f"This is the result for parameter {param}."
     
-    # Сохранение результата в st.session_state
-    st.session_state.result = result
+#     # Сохранение результата в st.session_state
+#     st.session_state.result = result
     
-    return result
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#     return result
+# # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def obrez(dataset):
     dataset_obr = dataset.copy()
     columns_to_drop = [9, 10, 11, 12, 13]
