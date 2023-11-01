@@ -258,7 +258,7 @@ sku_now = actual_sku(df)
 osnova_dt = sozdanie_datafreima()
 # new_sku = spisok_new_sku(osnova_dt)
 execution_count = schetchick()
-if execution_count == 0:
+if execution_count == 1:
     novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
 else:
     novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
