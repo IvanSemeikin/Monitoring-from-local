@@ -465,10 +465,10 @@ if st.button("Обновить данные за сутки"):
     filename = "Мониторинг_первый_для_Git.xlsx"
     
     # Клонируем репозиторий, если его нет
-    try:
-        repo = git.Repo(repo_path)
-    except git.exc.InvalidGitRepositoryError:
-        repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
+    # try:
+    #     repo = git.Repo(repo_path)
+    # except git.exc.InvalidGitRepositoryError:
+    repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
     
     # Получаем содержимое файла Excel из репозитория
     file_blob = repo.head.commit.tree / filename
