@@ -134,8 +134,8 @@ def sozdanie_datafreima():
 #     osnova_dt['delta price'] = osnova_dt['current sku price'] - osnova_dt['previous sku price']  # Нельзя для пустого датафрейма
     return osnova_dt
 
-def spisok_new_sku(dataset1):
-    sku_imeuschiesya = dataset1.index.values.tolist()
+def spisok_new_sku(dataset11):
+    sku_imeuschiesya = dataset11.index.values.tolist()
     new_sku = [x for x in sku_now if x not in sku_imeuschiesya]
     return new_sku
 
@@ -212,14 +212,12 @@ def obrez(dataset):
 
 def dataset_k_pokazu(dataset):
     proverka = ['1']
-    novyi_pd_dlya_pokaza = novyi_pd[novyi_pd['Проверка'].isin(proverka)]
+    novyi_pd_dlya_pokaza = dataset[dataset['Проверка'].isin(proverka)]
     novyi_pd_dlya_pokaza = novyi_pd_dlya_pokaza.iloc[:, [0, 1,2,3,4,5,6,7,8]]
-    
     return novyi_pd_dlya_pokaza
 
 def concat_all_datasets(dataset1, dataset4, dataset5, dataset6, dataset7):  # сейчас пропущены dataset2, dataset3
     df_obschiy = pd.concat([dataset1, dataset4, dataset5, dataset6, dataset7])  # сейчас пропущены dataset2, dataset3
-
     return df_obschiy
 
 def dlit_vypoln(start, stop):
