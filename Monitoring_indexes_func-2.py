@@ -243,6 +243,7 @@ def schetchick():
     # Сохранение результата в st.session_state
     st.session_state.execution_count = execution_count
     print(execution_count)
+
     return execution_count
 
 
@@ -291,11 +292,11 @@ stop = time.time()
 dlit_vypoln(start, stop)
 time_vypoln()
 pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-
+print(f'Счетчик: {execution_count}')
 
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 if st.button("Пожалуйста, работай нормально!"):
-    print(execution_count)
+    print(f'Счетчик: {execution_count}')
     st.write('GO Vegas!***************************************************')
     start = time.time()
     # Вызов функций
@@ -314,10 +315,7 @@ if st.button("Пожалуйста, работай нормально!"):
     osnova_dt = sozdanie_datafreima()
     # new_sku = spisok_new_sku(osnova_dt)
     execution_count = schetchick()
-    if execution_count == 1:
-        novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-    else:
-        novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+    novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
     novyi_pd = obrabotka_dataseta(novyi_pd)
     dataset_obrez = obrez(novyi_pd)
     novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
@@ -326,7 +324,7 @@ if st.button("Пожалуйста, работай нормально!"):
     dlit_vypoln(start, stop)
     time_vypoln()
     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-
+    print(f'Счетчик: {execution_count}')
 # In[ ]:
 
 
