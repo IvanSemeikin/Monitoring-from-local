@@ -541,38 +541,38 @@ if st.button("Обновить данные за сутки"):
 
 # #     st.success("Данные успешно сохранены и закоммичены в Git")
 # *********************************************************************************************************    
-# Путь к репозиторию Git
-repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
-filename = "Мониторинг_первый_для_Git.xlsx"
+# # Путь к репозиторию Git
+# repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
+# filename = "Мониторинг_первый_для_Git.xlsx"
 
-# Клонируем репозиторий, если его нет
-try:
-    repo = git.Repo(repo_path)
-except git.exc.InvalidGitRepositoryError:
-    repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
+# # Клонируем репозиторий, если его нет
+# try:
+#     repo = git.Repo(repo_path)
+# except git.exc.InvalidGitRepositoryError:
+#     repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
 
-# Получаем содержимое файла Excel из репозитория
-file_blob = repo.head.commit.tree / filename
-file_content = file_blob.data_stream.read()
+# # Получаем содержимое файла Excel из репозитория
+# file_blob = repo.head.commit.tree / filename
+# file_content = file_blob.data_stream.read()
 
-# Загружаем содержимое файла Excel в датафрейм
-df__try = pd.read_excel(BytesIO(file_content))
+# # Загружаем содержимое файла Excel в датафрейм
+# df__try = pd.read_excel(BytesIO(file_content))
 
-# Отображаем датафрейм в Streamlit
-st.dataframe(df__try)
+# # Отображаем датафрейм в Streamlit
+# st.dataframe(df__try)
 
-# Редактируем данные в датафрейме
-# В этом примере добавляем новую строку
-new_data = {'Имя': 'Новый', 'Возраст': 40}
-df = df.append(new_data, ignore_index=True)
+# # Редактируем данные в датафрейме
+# # В этом примере добавляем новую строку
+# new_data = {'Имя': 'Новый', 'Возраст': 40}
+# df = df.append(new_data, ignore_index=True)
 
-# Отображаем измененный датафрейм в Streamlit
-st.dataframe(df)
+# # Отображаем измененный датафрейм в Streamlit
+# st.dataframe(df)
 
-# Кнопка для сохранения изменений и коммита в Git
-if st.button("Сохранить изменения и Git"):
-    # Сохраняем измененный датафрейм в Excel
-    excel_data = df.to_excel(index=False, header=True)
+# # Кнопка для сохранения изменений и коммита в Git
+# if st.button("Сохранить изменения и Git"):
+#     # Сохраняем измененный датафрейм в Excel
+#     excel_data = df.to_excel(index=False, header=True)
 
-    # Обновляем содержимое файла в репозитории
-    file_blob.data_stream.overwrite().write(excel_data.getvalue())
+#     # Обновляем содержимое файла в репозитории
+#     file_blob.data_stream.overwrite().write(excel_data.getvalue())
