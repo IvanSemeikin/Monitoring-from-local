@@ -262,69 +262,69 @@ def schetchick():
 # *****************************************************************************************************************************************
 
 
-# start = time.time()
-# # Вызов функций
-# df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
-# # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
-# # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
-# df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
-# df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
-# df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
-# df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+start = time.time()
+# Вызов функций
+df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
+# df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
+# df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
+df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
+df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
+df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
+df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
 
-# df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
 
-# df = nuzhn_stolb(df)
-# sku_now = actual_sku(df)
-# osnova_dt = sozdanie_datafreima()
-# # new_sku = spisok_new_sku(osnova_dt)
-# execution_count = schetchick()
-# if execution_count == 1:
-#     novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-# else:
-#     novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-# novyi_pd = obrabotka_dataseta(novyi_pd)
-# dataset_obrez = obrez(novyi_pd)
-# novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
+df = nuzhn_stolb(df)
+sku_now = actual_sku(df)
+osnova_dt = sozdanie_datafreima()
+# new_sku = spisok_new_sku(osnova_dt)
+execution_count = schetchick()
+if execution_count == 1:
+    novyi_pd = main_dataset(osnova_dt, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+else:
+    novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+novyi_pd = obrabotka_dataseta(novyi_pd)
+dataset_obrez = obrez(novyi_pd)
+novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
-# st.write(execution_count)
-# stop = time.time()
-# dlit_vypoln(start, stop)
-# time_vypoln()
-# pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-# st.write(f'Счетчик: {execution_count}')
+st.write(execution_count)
+stop = time.time()
+dlit_vypoln(start, stop)
+time_vypoln()
+pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
+st.write(f'Счетчик: {execution_count}')
 
-# # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
-# if st.button("Пожалуйста, работай нормально!"):
-#     st.write(f'Счетчик: {execution_count}')
+# ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
+if st.button("Пожалуйста, работай нормально!"):
+    st.write(f'Счетчик: {execution_count}')
    
-#     start = time.time()
-#     # Вызов функций
-#     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
-#     # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
-#     # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
-#     df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
-#     df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
-#     df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
-#     df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+    start = time.time()
+    # Вызов функций
+    df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
+    # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
+    # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
+    df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
+    df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
+    df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
+    df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
     
-#     df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+    df = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
     
-#     df = nuzhn_stolb(df)
-#     sku_now = actual_sku(df)
-#     osnova_dt = sozdanie_datafreima()
-#     # new_sku = spisok_new_sku(osnova_dt)
-#     execution_count = schetchick()
-#     novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-#     novyi_pd = obrabotka_dataseta(novyi_pd)
-#     dataset_obrez = obrez(novyi_pd)
-#     novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
+    df = nuzhn_stolb(df)
+    sku_now = actual_sku(df)
+    osnova_dt = sozdanie_datafreima()
+    # new_sku = spisok_new_sku(osnova_dt)
+    execution_count = schetchick()
+    novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+    novyi_pd = obrabotka_dataseta(novyi_pd)
+    dataset_obrez = obrez(novyi_pd)
+    novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
     
-#     stop = time.time()
-#     dlit_vypoln(start, stop)
-#     time_vypoln()
-#     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-#     st.write(f'Счетчик: {execution_count}')
+    stop = time.time()
+    dlit_vypoln(start, stop)
+    time_vypoln()
+    pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
+    st.write(f'Счетчик: {execution_count}')
 
 
 # # ConnectionError: HTTPSConnectionPool(host='api-seller.ozon.ru', port=443): Max retries exceeded with url: /v2/product/info (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000202785F02B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
@@ -460,32 +460,32 @@ def schetchick():
 # ***********************************************************************************************************************
 # ***********************************************************************************************************************
 
-# Вторая кнопка обновления суточных данных
-if st.button("Обновить данные за сутки"):
-    # repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
-    # try:
-    #     repo = git.Repo(repo_path)
-    # except git.exc.NoSuchPathError:
-    #     st.write(f"Ошибка: Не удается найти путь {repo_path}")
-    # # Путь к репозиторию Git
-    repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
-    filename = "Мониторинг_первый_для_Git.xlsx"
+# # Вторая кнопка обновления суточных данных
+# if st.button("Обновить данные за сутки"):
+#     # repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
+#     # try:
+#     #     repo = git.Repo(repo_path)
+#     # except git.exc.NoSuchPathError:
+#     #     st.write(f"Ошибка: Не удается найти путь {repo_path}")
+#     # # Путь к репозиторию Git
+#     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
+#     filename = "Мониторинг_первый_для_Git.xlsx"
     
-    # # Клонируем репозиторий, если его нет
-    # # try:
-    repo = git.Repo(repo_path)
-    # # except git.exc.InvalidGitRepositoryError:
-    # # repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
+#     # # Клонируем репозиторий, если его нет
+#     # # try:
+#     repo = git.Repo(repo_path)
+#     # # except git.exc.InvalidGitRepositoryError:
+#     # # repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
     
-    # Получаем содержимое файла Excel из репозитория
-    file_blob = repo.head.commit.tree / filename
-    file_content = file_blob.data_stream.read()
+#     # Получаем содержимое файла Excel из репозитория
+#     file_blob = repo.head.commit.tree / filename
+#     file_content = file_blob.data_stream.read()
     
-    # Загружаем содержимое файла Excel в датафрейм
-    df__try = pd.read_csv(BytesIO(file_content))
+#     # Загружаем содержимое файла Excel в датафрейм
+#     df__try = pd.read_csv(BytesIO(file_content))
     
-    # Отображаем датафрейм в Streamlit
-    st.dataframe(df__try)
+#     # Отображаем датафрейм в Streamlit
+#     st.dataframe(df__try)
     
 #     # Сначала пройтись по репозиторию, найти последний файл excel (по дате) и сравнить с сегодняшней датой
 #     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
