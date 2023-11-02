@@ -208,12 +208,12 @@ if 'dataset_blin' not in st.session_state:
     
 # Инициализация st.session_state, если это необходимо
 
-def obrez(dataset_blin):
+def obrez(dataset):
     global dataset_blin
     dataset_obr = dataset_blin.copy()
     columns_to_drop = [9, 10, 11, 12, 13]
     dataset_obr.drop(dataset_obr.columns[columns_to_drop], axis=1, inplace=True)
-    st.session_state.dataset_blin = dataset_blin
+    st.session_state.dataset_blin = dataset_obr
     return dataset_obr
     
 
