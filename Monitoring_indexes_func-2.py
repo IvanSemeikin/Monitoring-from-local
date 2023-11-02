@@ -241,7 +241,8 @@ def schetchick():
     global execution_count
     execution_count += 1
     # Сохранение результата в st.session_state
-    st.session_state.execution_count = execution_count    
+    st.session_state.execution_count = execution_count
+    print(execution_count)
     return execution_count
 
 
