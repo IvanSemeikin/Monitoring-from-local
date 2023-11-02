@@ -458,27 +458,34 @@ def schetchick():
 # # #     time.sleep(5)
 
 # ***********************************************************************************************************************
+# ***********************************************************************************************************************
+
 # Вторая кнопка обновления суточных данных
 if st.button("Обновить данные за сутки"):
-    # Путь к репозиторию Git
     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local.git"
-    filename = "Мониторинг_первый_для_Git.xlsx"
+    try:
+        repo = git.Repo(repo_path)
+    except git.exc.NoSuchPathError:
+        st.write(f"Ошибка: Не удается найти путь {repo_path}")
+    # # Путь к репозиторию Git
+    # repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local.git"
+    # filename = "Мониторинг_первый_для_Git.xlsx"
     
-    # Клонируем репозиторий, если его нет
-    # try:
-    repo = git.Repo(repo_path)
-    # except git.exc.InvalidGitRepositoryError:
-    # repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
+    # # Клонируем репозиторий, если его нет
+    # # try:
+    # repo = git.Repo(repo_path)
+    # # except git.exc.InvalidGitRepositoryError:
+    # # repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
     
-    # Получаем содержимое файла Excel из репозитория
-    file_blob = repo.head.commit.tree / filename
-    file_content = file_blob.data_stream.read()
+    # # Получаем содержимое файла Excel из репозитория
+    # file_blob = repo.head.commit.tree / filename
+    # file_content = file_blob.data_stream.read()
     
-    # Загружаем содержимое файла Excel в датафрейм
-    df__try = pd.read_excel(BytesIO(file_content))
+    # # Загружаем содержимое файла Excel в датафрейм
+    # df__try = pd.read_excel(BytesIO(file_content))
     
-    # Отображаем датафрейм в Streamlit
-    st.dataframe(df__try)
+    # # Отображаем датафрейм в Streamlit
+    # st.dataframe(df__try)
     
 #     # Сначала пройтись по репозиторию, найти последний файл excel (по дате) и сравнить с сегодняшней датой
 #     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
