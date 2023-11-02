@@ -487,7 +487,7 @@ if st.button("Обновить данные за сутки"):
 # if st.button("Сохранить в Excel и Git"):
 #     # Создаем имя файла
     today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    filename_united = f"Итог за день {today_date}.xlsx"
+    filename_united = f"Итог за день {today_date_united}.xlsx"
 
 #     # Сохраняем в Excel
     novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=False)
