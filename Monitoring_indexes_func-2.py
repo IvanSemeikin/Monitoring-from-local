@@ -482,7 +482,7 @@ if st.button("Обновить данные за сутки"):
     file_content = file_blob.data_stream.read()
     
     # Загружаем содержимое файла Excel в датафрейм
-    df__try = pd.read_excel(BytesIO(file_content))
+    df__try = pd.read_csv(BytesIO(file_content))
     
     # Отображаем датафрейм в Streamlit
     st.dataframe(df__try)
