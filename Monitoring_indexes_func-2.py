@@ -481,16 +481,17 @@ if st.button("Обновить данные за сутки"):
     
 
     # Отображаем датафрейм в Streamlit
-    st.dataframe(novyi_pd_dlya_pokaza_united)
+    # st.dataframe(novyi_pd_dlya_pokaza_united)
 
 # # Кнопка для сохранения в Excel и коммита в Git
 # if st.button("Сохранить в Excel и Git"):
 #     # Создаем имя файла
     today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    print(today_date_united)
     filename_united = f"Итог за день {today_date_united}.xlsx"
-
+    print(filename_united)
 #     # Сохраняем в Excel
-    novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=False)
+    novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
     st.success(f"Данные сохранены в {filename_united}")
 
 #     # Коммитим в Git
