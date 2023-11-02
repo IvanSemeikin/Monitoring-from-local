@@ -285,6 +285,7 @@ novyi_pd = obrabotka_dataseta(novyi_pd)
 dataset_obrez = obrez(novyi_pd)
 novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
+print(execution_count)
 stop = time.time()
 dlit_vypoln(start, stop)
 time_vypoln()
@@ -293,6 +294,7 @@ pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы пр�
 
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 if st.button("Пожалуйста, работай нормально!"):
+    print(execution_count)
     st.write('GO Vegas!***************************************************')
     start = time.time()
     # Вызов функций
