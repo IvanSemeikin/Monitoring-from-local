@@ -462,7 +462,7 @@ def schetchick():
 
 # Вторая кнопка обновления суточных данных
 if st.button("Обновить данные за сутки"):
-    repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local.git"
+    repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
     try:
         repo = git.Repo(repo_path)
     except git.exc.NoSuchPathError:
