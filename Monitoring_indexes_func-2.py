@@ -12,81 +12,81 @@ import git
 # # import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
 st.title('Мониторинг индексов цен OZON')
 
-# def take_info_sku(sku_list, clientid, apikey):#выгрузка из sku
-#     url = "https://api-seller.ozon.ru/v2/product/info"
-#     headers = {
-#         "Client-Id": clientid,
-#         "Api-Key": apikey,
-#         "Content-Type": "application/json"
-#     }
+def take_info_sku(sku_list, clientid, apikey):#выгрузка из sku
+    url = "https://api-seller.ozon.ru/v2/product/info"
+    headers = {
+        "Client-Id": clientid,
+        "Api-Key": apikey,
+        "Content-Type": "application/json"
+    }
     
-#     final_df = pd.DataFrame()
+    final_df = pd.DataFrame()
 
-#     for sku in sku_list:
-#         data = {"sku": sku}
-#         response = requests.post(url, headers=headers, json=data)
-#         result_data = response.json()
+    for sku in sku_list:
+        data = {"sku": sku}
+        response = requests.post(url, headers=headers, json=data)
+        result_data = response.json()
 
-#     #Проверка на ошибку или отсутствие данных
-#         if isinstance(result_data, str) or 'result' not in result_data:
-#             print(f"Данных по SKU {sku} нет.")
-#             continue  # Пропуск текущей итерации
+    #Проверка на ошибку или отсутствие данных
+        if isinstance(result_data, str) or 'result' not in result_data:
+            print(f"Данных по SKU {sku} нет.")
+            continue  # Пропуск текущей итерации
 
-#         df = pd.json_normalize(result_data['result'])
-#         df = df[['id', 'name','marketing_price', 'min_ozon_price','old_price', 'premium_price', 'price', 'recommended_price', 'min_price','price_index','price_indexes.price_index',
-#                  'price_indexes.external_index_data.minimal_price',
-#                  'price_indexes.external_index_data.minimal_price_currency',
-#                  'price_indexes.external_index_data.price_index_value']]
+        df = pd.json_normalize(result_data['result'])
+        df = df[['id', 'name','marketing_price', 'min_ozon_price','old_price', 'premium_price', 'price', 'recommended_price', 'min_price','price_index','price_indexes.price_index',
+                 'price_indexes.external_index_data.minimal_price',
+                 'price_indexes.external_index_data.minimal_price_currency',
+                 'price_indexes.external_index_data.price_index_value']]
 
         
-#         warnings.filterwarnings("ignore")
+        warnings.filterwarnings("ignore")
 
-#         df.index = [sku] * len(df)
-#         final_df = pd.concat([final_df, df])        # было так final_df = final_df.append(df)
+        df.index = [sku] * len(df)
+        final_df = pd.concat([final_df, df])        # было так final_df = final_df.append(df)
 
-#     return final_df
+    return final_df
 
-# #     return final_df.to_excel(r'C:\Users\iv18s\Desktop\Champ Commerce\indexes.xlsx')
+#     return final_df.to_excel(r'C:\Users\iv18s\Desktop\Champ Commerce\indexes.xlsx')
 
 
 # *******************************************************************************************************************************
-# # АННОР ГРУПП ООО
-# sku_1 = [583849836, 591277100, 591413879, 1032159418, 974739870, 595719315, 974735426, 1123269788, 1140364359, 842403637, 842404691, 1151844229, 857790599, 1151835491, 1151835845, 1151837403, 1151753898, 1151848598, 1151839306, 1151837986, 1151841444] 
-# client_Id_1 = "356810"
-# api_Key_1 = "63572e24-e7a4-4a60-9d8b-8a110af5a43a"
+# АННОР ГРУПП ООО
+sku_1 = [583849836, 591277100, 591413879, 1032159418, 974739870, 595719315, 974735426, 1123269788, 1140364359, 842403637, 842404691, 1151844229, 857790599, 1151835491, 1151835845, 1151837403, 1151753898, 1151848598, 1151839306, 1151837986, 1151841444] 
+client_Id_1 = "356810"
+api_Key_1 = "63572e24-e7a4-4a60-9d8b-8a110af5a43a"
 
-# # Бакина В.А. (Гуменюк) ИП
-# # sku_2 = [1184491881, 1184490550, 1184508336, 1184490550, 1184508336, 1184508336, 1184508336, 1223241618]
-# # client_Id_2 = ""
-# # api_Key_2 = ""
+# Бакина В.А. (Гуменюк) ИП
+# sku_2 = [1184491881, 1184490550, 1184508336, 1184490550, 1184508336, 1184508336, 1184508336, 1223241618]
+# client_Id_2 = ""
+# api_Key_2 = ""
 
-# # ИП Корыткина Г. Э
-# # sku_3 = [1223695977, 1223688125]
-# # client_Id_3 = ""
-# # api_Key_3 = ""
+# ИП Корыткина Г. Э
+# sku_3 = [1223695977, 1223688125]
+# client_Id_3 = ""
+# api_Key_3 = ""
 
-# # Казаков А. А. ИП
-# sku_4 = [1052881196]
-# client_Id_4 = "206273"
-# api_Key_4 = "d6d9710d-14f8-48be-83dc-978784ef52d7"
-
-
-# # Мисиоцкая К. К. ИП
-# sku_5 = [942887676, 1011620714]
-# client_Id_5 = "743131"
-# api_Key_5 = "23977008-7525-4d00-afdf-9d9d89d22c88"
+# Казаков А. А. ИП
+sku_4 = [1052881196]
+client_Id_4 = "206273"
+api_Key_4 = "d6d9710d-14f8-48be-83dc-978784ef52d7"
 
 
-# # Неклюдова Т. В. ИП
-# sku_6 = [821015069, 892024999, 893028679, 893031207, 1036222833, 1036231739, 1036246444]
-# client_Id_6 = "795940"
-# api_Key_6 = "10831bd1-87ee-4a79-abcf-800c64868210"
+# Мисиоцкая К. К. ИП
+sku_5 = [942887676, 1011620714]
+client_Id_5 = "743131"
+api_Key_5 = "23977008-7525-4d00-afdf-9d9d89d22c88"
 
 
-# # ООО ФЭЛФРИ
-# sku_7 = [938702199, 882130038]
-# client_Id_7 = "802356"
-# api_Key_7 = "4957fe6a-13b1-4887-83ee-5e105721cd68"
+# Неклюдова Т. В. ИП
+sku_6 = [821015069, 892024999, 893028679, 893031207, 1036222833, 1036231739, 1036246444]
+client_Id_6 = "795940"
+api_Key_6 = "10831bd1-87ee-4a79-abcf-800c64868210"
+
+
+# ООО ФЭЛФРИ
+sku_7 = [938702199, 882130038]
+client_Id_7 = "802356"
+api_Key_7 = "4957fe6a-13b1-4887-83ee-5e105721cd68"
 
 
 # *****************************************************************************************************************************************
