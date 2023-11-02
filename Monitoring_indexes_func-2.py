@@ -9,6 +9,7 @@ from datetime import datetime
 import time
 import streamlit as st
 import git
+from io import BytesIO
 # # import schedule  # Пока что скрыл, потому что streamlit не пропускает schedule
 st.title('Мониторинг индексов цен OZON')
 
@@ -459,61 +460,119 @@ def schetchick():
 # ***********************************************************************************************************************
 # Вторая кнопка обновления суточных данных
 if st.button("Обновить данные за сутки"):
-# Сначала пройтись по репозиторию, найти последний файл excel (по дате) и сравнить с сегодняшней датой
-    df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
-    # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
-    # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
-    df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
-    df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
-    df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
-    df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+    # Путь к репозиторию Git
+    repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
+    filename = "Мониторинг_первый_для_Git.xlsx"
     
-    df_united = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+    # Клонируем репозиторий, если его нет
+    try:
+        repo = git.Repo(repo_path)
+    except git.exc.InvalidGitRepositoryError:
+        repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
     
-    df_united = nuzhn_stolb(df_united)
-    sku_now_united = actual_sku(df_united)
-    osnova_dt_united = sozdanie_datafreima()
-    # new_sku_united = spisok_new_sku(osnova_dt_united)
-    novyi_pd_united = main_dataset(osnova_dt_united, df_united)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
-    novyi_pd_united = obrabotka_dataseta(novyi_pd_united)
-    dataset_obrez_united = obrez(novyi_pd_united)
-    novyi_pd_dlya_pokaza_united = dataset_k_pokazu(novyi_pd_united)
+    # Получаем содержимое файла Excel из репозитория
+    file_blob = repo.head.commit.tree / filename
+    file_content = file_blob.data_stream.read()
     
-
+    # Загружаем содержимое файла Excel в датафрейм
+    df__try = pd.read_excel(BytesIO(file_content))
+    
     # Отображаем датафрейм в Streamlit
-    # st.dataframe(novyi_pd_dlya_pokaza_united)
-
-# # Кнопка для сохранения в Excel и коммита в Git
-# if st.button("Сохранить в Excel и Git"):
-#     # Создаем имя файла
-    today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    st.write(today_date_united)
-    filename_united = f"Итог за день {today_date_united}.xlsx"
-    st.write(filename_united)
-#     # Сохраняем в Excel
-    # novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
-    # st.success(f"Данные сохранены в {filename_united}")
-    # Создаем файл Excel в формате байт
-    excel_data = novyi_pd_dlya_pokaza_united.to_excel(index=False, header=True)
-    excel_binary = excel_data.read()
-
-    # Сохраняем файл в Streamlit
-    st.download_button(
-        label="Скачать Excel файл",
-        data=excel_binary,
-        file_name=filename,
-        key='download_button'
-    )
-    st.success(f"Данные сохранены в {filename_united}")
-#     # Коммитим в Git
-#     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local/tree/main"
-#     repo = git.Repo(repo_path)
-
-#     # Добавляем файл в индекс
-#     repo.index.add([filename])
-
-#     # Коммитим с изменениями
-#     repo.index.commit(f"Добавлен файл: {filename}")
-
-#     st.success("Данные успешно сохранены и закоммичены в Git")
+    st.dataframe(df__try)
     
+#     # Сначала пройтись по репозиторию, найти последний файл excel (по дате) и сравнить с сегодняшней датой
+#     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
+#     # df_2 = take_info_sku(sku_2, client_Id_2, api_Key_2)
+#     # df_3 = take_info_sku(sku_3, client_Id_3, api_Key_3)
+#     df_4 = take_info_sku(sku_4, client_Id_4, api_Key_4)
+#     df_5 = take_info_sku(sku_5, client_Id_5, api_Key_5)
+#     df_6 = take_info_sku(sku_6, client_Id_6, api_Key_6)
+#     df_7 = take_info_sku(sku_7, client_Id_7, api_Key_7)
+    
+#     df_united = concat_all_datasets(df_1, df_4, df_5, df_6, df_7)  # сейчас нет df_2 и df_3
+    
+#     df_united = nuzhn_stolb(df_united)
+#     sku_now_united = actual_sku(df_united)
+#     osnova_dt_united = sozdanie_datafreima()
+#     # new_sku_united = spisok_new_sku(osnova_dt_united)
+#     novyi_pd_united = main_dataset(osnova_dt_united, df_united)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
+#     novyi_pd_united = obrabotka_dataseta(novyi_pd_united)
+#     dataset_obrez_united = obrez(novyi_pd_united)
+#     novyi_pd_dlya_pokaza_united = dataset_k_pokazu(novyi_pd_united)
+    
+
+#     # Отображаем датафрейм в Streamlit
+#     # st.dataframe(novyi_pd_dlya_pokaza_united)
+
+# # # Кнопка для сохранения в Excel и коммита в Git
+# # if st.button("Сохранить в Excel и Git"):
+# #     # Создаем имя файла
+#     today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+#     st.write(today_date_united)
+#     filename_united = f"Итог за день {today_date_united}.xlsx"
+#     st.write(filename_united)
+# #     # Сохраняем в Excel
+#     # novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
+#     # st.success(f"Данные сохранены в {filename_united}")
+#     # Создаем файл Excel в формате байт
+#     excel_data = novyi_pd_dlya_pokaza_united.to_excel(index=False, header=True)
+#     excel_binary = excel_data.read()
+    
+#     towrite = io.BytesIO()
+#     downloaded_file = df.to_excel(towrite, encoding='utf-8', index=False, header=True)
+    
+#     # Сохраняем файл в Streamlit
+#     st.download_button(
+#         label="Скачать Excel файл",
+#         data=excel_binary,
+#         file_name=filename,
+#         key='download_button'
+#     )
+#     st.success(f"Данные сохранены в {filename_united}")
+# #     # Коммитим в Git
+# #     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local/tree/main"
+# #     repo = git.Repo(repo_path)
+
+# #     # Добавляем файл в индекс
+# #     repo.index.add([filename])
+
+# #     # Коммитим с изменениями
+# #     repo.index.commit(f"Добавлен файл: {filename}")
+
+# #     st.success("Данные успешно сохранены и закоммичены в Git")
+# *********************************************************************************************************    
+# Путь к репозиторию Git
+repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local"
+filename = "Мониторинг_первый_для_Git.xlsx"
+
+# Клонируем репозиторий, если его нет
+try:
+    repo = git.Repo(repo_path)
+except git.exc.InvalidGitRepositoryError:
+    repo = git.Repo.clone_from("https://github.com/IvanSemeikin/Monitoring-from-local.git", repo_path)
+
+# Получаем содержимое файла Excel из репозитория
+file_blob = repo.head.commit.tree / filename
+file_content = file_blob.data_stream.read()
+
+# Загружаем содержимое файла Excel в датафрейм
+df__try = pd.read_excel(BytesIO(file_content))
+
+# Отображаем датафрейм в Streamlit
+st.dataframe(df__try)
+
+# Редактируем данные в датафрейме
+# В этом примере добавляем новую строку
+new_data = {'Имя': 'Новый', 'Возраст': 40}
+df = df.append(new_data, ignore_index=True)
+
+# Отображаем измененный датафрейм в Streamlit
+st.dataframe(df)
+
+# Кнопка для сохранения изменений и коммита в Git
+if st.button("Сохранить изменения и Git"):
+    # Сохраняем измененный датафрейм в Excel
+    excel_data = df.to_excel(index=False, header=True)
+
+    # Обновляем содержимое файла в репозитории
+    file_blob.data_stream.overwrite().write(excel_data.getvalue())
