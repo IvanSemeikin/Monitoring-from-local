@@ -491,9 +491,20 @@ if st.button("Обновить данные за сутки"):
     filename_united = f"Итог за день {today_date_united}.xlsx"
     st.write(filename_united)
 #     # Сохраняем в Excel
-    novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
-    st.success(f"Данные сохранены в {filename_united}")
+    # novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
+    # st.success(f"Данные сохранены в {filename_united}")
+    # Создаем файл Excel в формате байт
+    excel_data = novyi_pd_dlya_pokaza_united.to_excel(index=False, header=True)
+    excel_binary = excel_data.read()
 
+    # Сохраняем файл в Streamlit
+    st.download_button(
+        label="Скачать Excel файл",
+        data=excel_binary,
+        file_name=filename,
+        key='download_button'
+    )
+    st.success(f"Данные сохранены в {filename_united}")
 #     # Коммитим в Git
 #     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local/tree/main"
 #     repo = git.Repo(repo_path)
