@@ -202,10 +202,18 @@ def obrabotka_dataseta(dataset):
     
 #     return result
 # # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-def obrez(dataset):
-    dataset_obr = dataset.copy()
+dataset_blin = pd.DataFrame()
+if 'dataset_blin' not in st.session_state:
+    st.session_state.dataset_blin = None
+    
+# Инициализация st.session_state, если это необходимо
+
+def obrez(dataset_blin):
+    global dataset_blin
+    dataset_obr = dataset_blin.copy()
     columns_to_drop = [9, 10, 11, 12, 13]
     dataset_obr.drop(dataset_obr.columns[columns_to_drop], axis=1, inplace=True)
+    st.session_state.dataset_blin = dataset_blin
     return dataset_obr
     
 
@@ -297,7 +305,7 @@ print(f'Счетчик: {execution_count}')
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 if st.button("Пожалуйста, работай нормально!"):
     print(f'Счетчик: {execution_count}')
-    st.write('GO Vegas!***************************************************')
+   
     start = time.time()
     # Вызов функций
     df_1 = take_info_sku(sku_1, client_Id_1, api_Key_1)
