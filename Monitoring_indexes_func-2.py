@@ -486,15 +486,15 @@ if st.button("Обновить данные за сутки"):
 # # Кнопка для сохранения в Excel и коммита в Git
 # if st.button("Сохранить в Excel и Git"):
 #     # Создаем имя файла
-#     today_date = datetime.now().strftime("%Y-%m-%d")
-#     filename = f"Итог за день {today_date}.xlsx"
+    today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename_united = f"Итог за день {today_date}.xlsx"
 
 #     # Сохраняем в Excel
-#     df.to_excel(filename, index=False)
-#     st.success(f"Данные сохранены в {filename}")
+    novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=False)
+    st.success(f"Данные сохранены в {filename_united}")
 
 #     # Коммитим в Git
-#     repo_path = "путь/к/вашему/репозиторию"
+#     repo_path = "https://github.com/IvanSemeikin/Monitoring-from-local/tree/main"
 #     repo = git.Repo(repo_path)
 
 #     # Добавляем файл в индекс
