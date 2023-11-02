@@ -241,7 +241,7 @@ def schetchick():
     execution_count += 1
     # Сохранение результата в st.session_state
     st.session_state.execution_count = execution_count
-    print(execution_count)
+    st.write(execution_count)
 
     return execution_count
 
@@ -286,16 +286,16 @@ def schetchick():
 # dataset_obrez = obrez(novyi_pd)
 # novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
-# print(execution_count)
+# st.write(execution_count)
 # stop = time.time()
 # dlit_vypoln(start, stop)
 # time_vypoln()
 # pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-# print(f'Счетчик: {execution_count}')
+# st.write(f'Счетчик: {execution_count}')
 
 # # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 # if st.button("Пожалуйста, работай нормально!"):
-#     print(f'Счетчик: {execution_count}')
+#     st.write(f'Счетчик: {execution_count}')
    
 #     start = time.time()
 #     # Вызов функций
@@ -323,7 +323,7 @@ def schetchick():
 #     dlit_vypoln(start, stop)
 #     time_vypoln()
 #     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-#     print(f'Счетчик: {execution_count}')
+#     st.write(f'Счетчик: {execution_count}')
 
 
 # # ConnectionError: HTTPSConnectionPool(host='api-seller.ozon.ru', port=443): Max retries exceeded with url: /v2/product/info (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000202785F02B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
@@ -487,9 +487,9 @@ if st.button("Обновить данные за сутки"):
 # if st.button("Сохранить в Excel и Git"):
 #     # Создаем имя файла
     today_date_united = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    print(today_date_united)
+    st.write(today_date_united)
     filename_united = f"Итог за день {today_date_united}.xlsx"
-    print(filename_united)
+    st.write(filename_united)
 #     # Сохраняем в Excel
     novyi_pd_dlya_pokaza_united.to_excel(filename_united, index=True)
     st.success(f"Данные сохранены в {filename_united}")
