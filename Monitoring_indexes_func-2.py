@@ -325,21 +325,10 @@ if st.button("Пожалуйста, работай нормально!"):
     time_vypoln()
     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
     print(f'Счетчик: {execution_count}')
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 # ConnectionError: HTTPSConnectionPool(host='api-seller.ozon.ru', port=443): Max retries exceeded with url: /v2/product/info (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000202785F02B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
             
-
-
-# In[57]:
-
 
 # start = time.time()
 # # Вызов функций
@@ -418,10 +407,7 @@ if st.button("Пожалуйста, работай нормально!"):
 #     schedule.run_pending()
 #     time.sleep(1)
 
-
-# In[ ]:
-
-
+# ************************************************************************************************************************************************
 # # Лямбда-функция для передачи аргументов в функции
 # task_1 = lambda: take_info_sku(sku_1, client_Id_1, api_Key_1)
 # # task_2 = lambda: take_info_sku(sku_2, client_Id_2, api_Key_2)
@@ -470,52 +456,4 @@ if st.button("Пожалуйста, работай нормально!"):
 # # while True:
 # #     schedule.run_pending()
 # #     time.sleep(5)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
