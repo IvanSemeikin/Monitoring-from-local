@@ -242,7 +242,7 @@ def schetchick():
     execution_count += 1
     # Сохранение результата в st.session_state
     st.session_state.execution_count = execution_count
-    st.write(execution_count)
+    # st.write(execution_count)
 
     return execution_count
 
@@ -287,16 +287,16 @@ novyi_pd = obrabotka_dataseta(novyi_pd)
 dataset_obrez = obrez(novyi_pd)
 novyi_pd_dlya_pokaza = dataset_k_pokazu(novyi_pd)
 
-st.write(execution_count)
+# st.write(execution_count)
 stop = time.time()
 dlit_vypoln(start, stop)
 time_vypoln()
 pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-st.write(f'Счетчик: {execution_count}')
+# st.write(f'Счетчик: {execution_count}')
 
 # ХОЧУ ДОБАВИТЬ КНОПКУ!*****************************************************************************************************************************************
 if st.button("Пожалуйста, работай нормально!"):
-    st.write(f'Счетчик: {execution_count}')
+    # st.write(f'Счетчик: {execution_count}')
    
     start = time.time()
     # Вызов функций
@@ -314,7 +314,7 @@ if st.button("Пожалуйста, работай нормально!"):
     sku_now = actual_sku(df)
     osnova_dt = sozdanie_datafreima()
     # new_sku = spisok_new_sku(osnova_dt)
-    execution_count = schetchick()
+    # execution_count = schetchick()
     novyi_pd = main_dataset(dataset_obrez, df)  # В первый раз нужно вставить osnova_dt, начиная со второго dataset_obrez
     novyi_pd = obrabotka_dataseta(novyi_pd)
     dataset_obrez = obrez(novyi_pd)
@@ -324,7 +324,7 @@ if st.button("Пожалуйста, работай нормально!"):
     dlit_vypoln(start, stop)
     time_vypoln()
     pokaz(novyi_pd_dlya_pokaza)  # Сперва попробую хотя бы просто вывести итог в streamlit
-    st.write(f'Счетчик: {execution_count}')
+    # st.write(f'Счетчик: {execution_count}')
 
 
 # # ConnectionError: HTTPSConnectionPool(host='api-seller.ozon.ru', port=443): Max retries exceeded with url: /v2/product/info (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000202785F02B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
